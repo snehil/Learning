@@ -1,0 +1,18 @@
+[1] Find MAX/MIN in a subarray
+	- Kadane's algorithm
+	- Sliding window (anchor)
+https://leetcode.com/problems/maximum-subarray/
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+https://leetcode.com/problems/maximum-product-subarray/
+https://leetcode.com/problems/degree-of-an-array/
+https://leetcode.com/problems/longest-turbulent-subarray/
+https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
+
+
+[2] Prefix Sum
+https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
+
+
+[3] [Next (or Previous) Greatest element (NGE), NSE, PGE, PSE]
+	- Using stacks (2 pass and then 1 pass)
+	- Using arrays (faster than stack)

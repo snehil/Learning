@@ -1,0 +1,144 @@
+Memorize:
+=========
+
+MySQL data type sizes:
+int, long - 4 bytes
+double, long long 8 bytes
+1 char = 1 byte
+timestamp - 4 bytes (4 bytes + fractional-seconds storage, big endian)
+datetime - 8 bytes (5 bytes + fractional-seconds storage, big endian)
+char - max 255 chars. 
+varchar - max 255 chars. Uses 1 byte per char and 2 bytes to store length of actual data.
+boolean - 2 bytes.
+
+
+No. of secs in a day = 24*60*60
+
+
+====================
+[Very Good!] DynamoDB paper - https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html
+
+
+Read grokking Jayan PDF.
+DDIA
+
+
+I'm following up from my previous post and sharing some data points on my sys design approach. 
+https://www.teamblind.com/post/How-I-got-into-FAANG-FpwTWHuo
+
+It is not an exhaustive list and might not work for everyone. Also it is not a one size fits all thing but I hope it helps you to draft a plan and figure out how to tackle the sys design.
+
+Papers to read: (https://www.educative.io/courses/grokking-adv-system-design-intvw)
+Dynamo - http://www.cs.cornell.edu/courses/cs5414/2017fa/papers/dynamo.pdf
+Cassandra - https://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf
+Kafka - http://notes.stephenholiday.com/Kafka.pdf
+Chubby - https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf
+GFS - https://static.googleusercontent.com/media/research.google.com/en//archive/gfs-sosp2003.pdf
+HDFS - https://storageconference.us/2010/Papers/MSST/Shvachko.pdf
+BigTable - https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf
+Zookeeper - https://www.usenix.org/legacy/event/atc10/tech/full_papers/Hunt.pdf
+SpannerDB - https://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf
+
+Resources:
+1. https://github.com/donnemartin/system-design-primer
+2. https://github.com/binhnguyennus/awesome-scalability
+3. Youtube InfoQ channel - https://www.youtube.com/user/MarakanaTechTV
+4. Youtube SDE Skills channel - https://www.youtube.com/channel/UCPumyEKs86w-GtWDd2XQYtg
+5. Amazon DynamoDB - https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
+6. Grokking the sys design interview - https://www.educative.io/courses/grokking-the-system-design-interview
+
+Process:
+- I started with reading Amazon DynamoDB paper. This is a very practical paper to understand consistent hashing. 
+- I also started spending time on Donne Martin Sys Design (resource 1) and tried to go through each section. I went through this page 2-3 times entirely to develop some understanding (my philosophy is to read one book 10 times than reading ten books 1 time). I was not just reading it page but making my notes summarizing each building block, its usage, common systems where it is used and its drawbacks.
+- For each component (whether it is a caching, messageQ, DBs) I searched for Youtube videos and gathered more info on it. I penned it down in my notes, copied any diagram I found its usage in, stored links to videos or blogs I saw mentioned something useful about it.
+- I started reading cloud design pattern - https://docs.microsoft.com/en-us/azure/architecture/patterns/ - It has some good info on what the nomenclature is and how some components are typically used.
+- I started going over practical system designs - Read mostly from Uber blog, Facebook blog and Yelp architecture.
+- I read about few system design practical questions and analyzed what sort of things I need to address there - Grokking the sys design and Donne Martin has some good examples on these.
+- Before each interview I only referred to my notes on various components/building blocks instead of researching again.
+- Finally I made sure I practiced on whiteboard with solving 2-3 sys design problems. Idea was to complete them in 45 mins (more on this below).
+
+My 9 Step approach
+------------------------
+1. Gather requirements(use case, who is customer, why is this needed etc.) 
+2. Discuss system constraints (any limitations, what is allowed vs what is not)
+3. Do capacity estimation, specifically 
+  - traffic estimation (read request per sec, write requests per sec) 
+  - storage estimation (storage needed to store worth 3 yrs of stored 'object') 
+  - bandwidth estimate (#of bytes/sec system should handle for incoming and outgoing traffic) 
+  - cache estimate (memory needed to cache some of the hot read responses, 80-20 rule)
+
+4. Define System APIs - Rest style mostly (read about Rest vs Soap)
+5. Draw top level system diagram (client, web servers, platform, database, worker services)  
+6. Discuss database design choice (schema, SQL or no-SQL) 
+7. Perfect your design for a single user -> get a Minimum Viable Product 
+8. Discuss scaling 
+  - find bottlenecks and single point of failures (put load balancer, caching, replication, Message queues, Asynchronous workers) 
+9. Test and Review your design (Treat this one as same what you do in coding interview)
+  - walk through your system and see if we met each customers need
+  - did we provide APIs for each customer ask 
+  - did we walk over failover scenarios (not just vanilla passing case) 
+  - did we draw system boundaries/or blocks to explain different parts of systems
+
+If you manage to get all these steps in 45 mins you've probably addressed most of the interviewer concerns :)
+
+Some practical examples (see if above 9 steps are followed here):
+Design Tiny URL: http://tinyurl.com/jlg8zpc
+
+Design Instagram: https://www.educative.io/collection/page/5668639101419520/5649050225344512/5673385510043648
+
+Some tricks you'll need:
+1. You need to know some common sys design patterns. If you tell I'll solve this by using 'Consistent Hashing' you don't have to waste your time and explain this whole thing on whiteboard. Interviewer can also see you know the common industry stuff and where to use it. Just say the name and keep moving.
+2. When interviewer interrupts you in your design and asks a question, don't be defensive and start proving what you've done is correct. You might be correct or you are being asked to suggest alternatives for the design choice you made - knowing what building blocks exist helps here.
+3. Try to reach to step 8 in the 45 mins discussion. Have some rough diagram on board like below to convey what you are saying (not just doing hand wavy stuff)
+
+
+A lot of folks mention about youtube content. Atleast when i started, I was not sure what to watch. I am giving some examples here for reference to get started. After reading DDIA, I could relate the ideas in DDIA to these videos.
+
+https://www.youtube.com/watch?v=Sr0sX-TId-g - How Instagram uses Cassandra for data locality.
+https://www.youtube.com/watch?v=MtGYgilaPgo - How netflix manages the data stores Cassandra and Memcache D - Excellent to learn about the Cross Region Replication, Monitoring, Multi Region Deployments.
+https://www.youtube.com/watch?v=Rzdxgx3RC0Q - Netflix Distributed Cache.
+https://www.youtube.com/watch?v=Y6Ev8GIlbxc - Good Overal Architecture .
+https://www.youtube.com/watch?v=w9GP7MNbaRc - Another nice one about distributed systems
+https://www.youtube.com/watch?v=_M-oHxknfnI - Slack Architecture
+https://netflixtechblog.com/benchmarking-cassandra-scalability-on-aws-over-a-million-writes-per-second-39f45f066c9e - Netflix casaandra single region and multi region updates
+
+
+revise hadoop, aws
+revise netwroking OCI stack, REST, SOAP, http, https, websockets, microservices
+revise API design and OOP design patterns
+	READ
+		http://highscalability.com/blog/2022/1/25/designing-uber.html
+		http://highscalability.com/blog/2022/1/17/designing-tinder.html
+		http://highscalability.com/blog/2022/1/11/designing-instagram.html
+		http://highscalability.com/blog/2022/1/3/designing-whatsapp.html
+		http://highscalability.com/blog/2021/12/13/designing-netflix.html
+		http://highscalability.com/youtube-architecture
+		http://highscalability.com/google-architecture
+		http://highscalability.com/blog/2017/12/11/netflix-what-happens-when-you-press-play.html
+		http://highscalability.com/scaling-twitter-making-twitter-10000-percent-faster
+		http://highscalability.com/blog/2011/12/19/how-twitter-stores-250-million-tweets-a-day-using-mysql.html
+		http://highscalability.com/blog/2014/2/26/the-whatsapp-architecture-facebook-bought-for-19-billion.html
+		http://highscalability.com/flickr-architecture
+		http://highscalability.com/blog/2014/3/31/how-whatsapp-grew-to-nearly-500-million-users-11000-cores-an.html
+		http://highscalability.com/amazon-architecture
+		http://highscalability.com/blog/2016/3/16/jeff-dean-on-large-scale-deep-learning-at-google.html
+		http://highscalability.com/blog/2009/8/5/stack-overflow-architecture.html
+		http://highscalability.com/blog/2012/5/21/pinterest-architecture-update-18-million-visitors-10x-growth.html
+		http://highscalability.com/blog/2012/1/9/the-etsy-saga-from-silos-to-happy-to-billions-of-pageviews-a.html
+		http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-second-using-mesos-and.html
+
+
+system design:
+high scalability system design blogs
+grokking system design pdf
+ddia overview.
+mysql v/s sql deep dive
+consistent hash ringcassandra/athena/dynamo/redis deep dive
+CAP/ACID
+http codes
+kafka
+zookeeper
+nginx
+session management/sticky sessions
+load balancing
+data partitioning

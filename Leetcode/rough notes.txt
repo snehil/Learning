@@ -1,0 +1,755 @@
+
+
+
+--------------------------------------------------------
+BLIND 75
+https://docs.google.com/spreadsheets/d/1A2PaQKcdwO_lwxz9bAnxXnIQayCouZP6d-ENrBz_NXc/edit#gid=0
+
+Combined 220 list: https://leetcode.com/list/97cnznz2/
+This is the combined list. it includes
+- blind75 list
+- seanprashad list
+- grokking coding patterns list
+- grokking dp patterns list
+
+DSA questions sheet:
+https://drive.google.com/file/d/1FMdN_OCfOI0iAeDlqswCiC2DZzD4nPsb/view 
+
+
+--------------------------------------------------------
+Networking:
+CIDR - https://www.youtube.com/watch?v=z07HTSzzp3o
+
+
+Trie
+Monotonic stack and queue
+binary search
+
+
+
+Recursion time complexity
+https://stackoverflow.com/questions/13467674/determining-complexity-for-recursive-functions-big-o-notation
+
+
+"aa"
+"*"
+
+"aab"
+"c*a*b"
+
+------------------------------------------------------------
+JAVA CHEATSHEET
+================
+Sean prasad Java refresher - https://drive.google.com/file/d/1ao4ZA28zzBttDkuS6MLQI52gDs_CJZEm/view
+
+Array to string   Arrays.toString(arr)
+
+Rounding and precision errors in Java - https://www.geeksforgeeks.org/rounding-off-errors-java/
+                                      - https://www.youtube.com/watch?v=6lrqnblN82w
+                                      - Solution: use Bigdecimal.valueOf(DOUBLE/FLOAT) https://www.youtube.com/watch?v=6pu0rpvA1fg 
+                                      - Bigdecimal setscale and roundingmode - https://www.youtube.com/watch?v=ZS3fi1JivOY
+Overflow and under-flow in Java - https://www.baeldung.com/java-overflow-underflow 
+Stack overflow and underflow - https://www.youtube.com/watch?v=fUFleVaZwV8
+
+
+String.substring method - (For more details see - https://www.javatpoint.com/java-string-substring)
+    The Java String class substring() method returns a part of the string.
+
+    Signature:
+        public String substring(int startIndex)                // type - 1  
+        public String substring(int startIndex, int endIndex)  // type - 2  
+
+    startIndex : starting index is inclusive
+    endIndex : ending index is exclusive
+
+    StringIndexOutOfBoundsException is thrown in case of index out of bound issues. 
+
+
+Initialize int[]:
+    int test = new int[]{1,2,3,4};
+
+    // To fill array with -1
+    dp = new int[5];
+    Arrays.fill(dp, -1);
+
+To convert String (number) to an Integer
+    Integer num = Integer.parseInt(str);
+
+To find index of a char in a String:
+    str.indexOf("hello");
+
+Iterate HASHMAP:
+        sampleMap.forEach((key, value)->{
+            // TODO
+        });
+
+        or 
+
+        for (Map.Entry<Integer, Integer> entry : sampleMap.entrySet()) {
+            int key = entry.getKey();
+            int val = entry.getValue();
+        }
+
+To convert List<Integer> to int[]
+            integerList
+                .stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+
+Get single entry from hashmap:
+    Map.Entry<Integer> first = graph.entryset().iterator().next();
+
+how to initialize 2-dimensional array for graph problems: 
+    int[][] offsets = new int[][]{{-1,0}, {1,0}, {0,1}, {0,-1}};
+
+How to compare 2 int arrays:
+    int[] a = new int[]{1,2};
+    int[] b = new int[]{2,3};
+    Arrays.equals(a, b);
+
+To convert char to ascii int value. just cast the char to int
+    char ch = 'a';
+    int ascii = (int) ch;
+
+[Best Practice] Use Deque interface for LinkedList: 
+https://docs.oracle.com/javase/7/docs/api/java/util/Deque.html
+--------------------------------------- ---------------------
+***PATTERNS***
+**************
+
+GENERAL TIPS:
+============
+Problem constriants - https://www.youtube.com/watch?v=3etzME4DNXg&list=PL_z_8CaSLPWcB1QSAgbdMqyq-KXDqBiZx&index=2
+    - They tell us which datatype to use based on given uppoer bounds (int, long, etc.) eg. int=10^8
+    - They tell us what the time cpomplexity of the code could be (and potentially which data structures to use based on the time complexity)
+        - 10^18 => log(n)  {log(n)=10^8 won't fit here. But log(10^18) = 18log10=18 which is less than 10^18 so log(n) fits}
+        - 10^8  => O(n) ********** ASSUME TO DEDUDE OTHER TIME COMPEXITIES!!
+        - 10^4  => O(n^2)
+        - 10^6  => O(nlogN).. since 6*10^6 < 10^8
+        - 500   => O(n^3)
+        - 85-90 => O(n^4)
+        - 20    => O(2^N) --> Exponential (Recursion)
+        - 11    => O(n!)
+
+    - How to debug code? (DRY RUN/PRINT/STUB -  DPS)
+        - DRY RUN code and have all expected values ready
+        - write modular/functional code and PRINT imtermediate results to narrow down search space
+        - STUB functions and see which function is broken (i.e. comment actual function logic and hard code expected answer for the given test input for the entire code).
+    - Always mention Brute force solution first and then improve it. Justify what is repetitive work and how it can be improved. shows thinking power. 
+
+
+TIME COMPLEXITY
+===============
+[TODO] CTCI
+    -----------------------------
+    for loop: i=0 to N-1
+        for loop j=i to N-1
+
+    Time=O(n^2)
+
+    N + (N-1) + (N-2) + ... = N(N+1)/2 = O(N^2)
+    -----------------------------
+    - Finding all subsets of a set = O(2^N)
+    - Finding all permutations of a string = O(N!)
+    - Merge sort = O(NlogN)
+
+
+ARRAYS
+======
+    - Gap algorithm to merge 2 sorted integer arrays in O(nlogn) time and O(1) space - https://www.youtube.com/watch?v=hVl2b3bLzBw  .Choose ceiling valye for GAP in case of a demical value when divided by 2. 
+    Problem link - https://leetcode.com/problems/merge-sorted-array/
+
+
+
+LINKEDLIST
+==========
+- Java API - https://www.geeksforgeeks.org/linked-list-in-java/
+- The Java implementation of the LinkedList class is a doubly LinkedList. A static array based implementation will be faster though. 
+- A doubly linkedlist has pointers to both the head and the tail of the list. 
+- Stack and Queue can be implemented using LinkedList
+
+
+
+
+MATH
+=====
+GCD:
+    Euclid's algorithm to calculate GCD:
+        private int gcd(int a, int b) {        
+            return (b==0) ? a : gcd(b, a%b);
+        }
+
+    64,12
+    12,
+
+
+    60, 36
+
+    a=60, b=36
+           = 60-36=24
+
+    a=60
+
+RECURSION
+=========
+    - Recursion is used where: choices/decisions have to be made.
+    - Create a recursion tree. Use (Output/Input) node method for each tree node as in video https://www.youtube.com/watch?v=kHi1DUhp9kM&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY 
+    - Dry run the above output/input recursion tree until the input leaf nodes are empty. The output leaves will then have the final answer. 
+    - Recursion is used in the following problems: array, string, tree, graph (DFS, flood fill), DP, backracking, divide and conquer    
+
+    ** BHI method (Base condition, Hypothesis, Induction) 
+        - Example explanation: https://www.youtube.com/watch?v=AZ4jEY_JAVc&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=6
+        
+        - Example 1: Find height of binary tree using recursion
+            - Step 1 [Hypothesis]: write function signtaure for 'n' and smaller inputs. eg. Find height of tree.
+                - height(node root) = height root
+                - height(node root.left) = height left
+                - height(node.right) = height right
+            - Step 2 [Induction]: 
+                Determine the relationship between the hypothesis 
+                    eg. current node height height = 1 + Math.max(height(node.left) , height(node.right))
+            - Step 3 [Base condition]:
+                Determine when the recursion ends and what value is returned
+                    eg. if (node==null) return 0;
+
+        - Example 2: Sort an array using recursion 
+            - (https://www.youtube.com/watch?v=AZ4jEY_JAVc&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=6)
+            - hypothsesis
+                sort(arr) = sorted arr
+                sort(arr.left) = sort arr left
+                sort (arr.right) = sort arr right
+
+            -Induction
+                current sorted arr = mergeSorted(sort(arr.left), sort(arr.right))
+
+                mergeSorted()
+                    - use 2 pointers to merge 2 sorted arrays 
+
+            - base condition:
+                if (arr.length == 1) return arr[0];
+
+        - Very good example 3- Sort array (https://www.youtube.com/watch?v=AZ4jEY_JAVc&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=6)
+
+        - Example 4: sort a stack:
+            - Explanation - https://www.youtube.com/watch?v=MOGBRkkOhkY&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=7
+            Hypothesis
+                sort(stack[1,5,3,2]) => stack[1,2,3,5]
+                sort(stack[1,5,3]) => stack[1,3,5]
+                sort(stack[1,5]) => stack[1,5]
+                sort(stack[1]) => stack[1]
+
+            base condition
+                if (stack.isEmpty()) return emtpy stack;
+                if (stack.size()==1) return stack;
+                
+            induction
+                    temp = stack.pop()
+                    sort(stack)                    
+                    insert(stack, temp)
+
+            ** Insert recursive function:
+                Hypothesis
+                    insert(stack[1,5,3], 2) => stack[1,2,3,5]
+                    insert(stack[1,5], 3) =-> stack[1,3,5]
+                    insert(stack[1], 5) => stack[1,5]
+                    insert(stack[], 1) => stack[1]
+                Base conditions
+                    if (stack.isEmpty()) {stack.push(numToInsert); return}
+                    if (stack.peek()<=num) {
+                        stack.push(num)
+                        return stack;
+                    }
+
+                Induction
+                    temp = stack.pop();
+                    curStack = insert(stack, numToInsert)
+                    stack.push(temp)
+                    return stack;
+
+        Example 5: Delete element from stack - https://www.youtube.com/watch?v=oCcUNRMl7dA&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=8
+        Example 6 (VERY IMPORTANT): Subset/powersets Input/Output tree method implementation - https://www.youtube.com/watch?v=Yg5a2FxU4Fo&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=12
+        EXample 7: Permutation with spaces (same I/O method) - https://www.youtube.com/watch?v=1cspuQ6qHW0&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=14
+
+        **EXAMPLE 8 (Extended Input/Output method) - Generate Balanced Parenthesis - https://www.youtube.com/watch?v=eyCj_u3PoJE&list=PL_z_8CaSLPWeT1ffjiImo0sYTcnLzo-wY&index=17
+
+
+DYNAMIC PROGRAMMING
+===================
+= Playlist - https://www.youtube.com/watch?v=nqowUJzG-iM&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go
+
+- Dynamic programming is 'enhanced' recursion (a choice is given). Same methods as in recursion apply here (Input/Output method and BHI - {Bas Conditon/Hypotheses/Induction})
+- has overlapping sub-problems
+- optimal solution is to be found
+- Use DP if:
+    - Choice has to be made
+    - Problem has overlapping sub-problems (in the recursion tree, some problems have already been solved)
+    - Optmizal solution has been asked (eg. Find max, min, largest, smallest, etc.) 
+
+- Dynamic programming (DP) parent questions:
+    - Notes and code: https://github.com/skjha1/Aditya-verma-youtube-playlist-code
+    1. 0/1 Knapsack (6 problems) - Check the recursive and top-down implementations here first: 
+            - Recursive code: https://www.youtube.com/watch?v=kvyShbFVaY8&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=3
+            - Memoization: https://www.youtube.com/watch?v=fJbIuhs24zQ&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=4
+            - Top-down DP: https://www.youtube.com/watch?v=ntCGbPMeqgg&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=5 
+
+        (1) Subset sum 
+            - Trick: this is the same as the knapsack problem. Except, the value array has to be completely ignored.
+        (2) Equal sum partition 
+            - Trick: For 2 subsets to have equal sums, the total sum or the original array must be even. So use subset sum problem
+              on the array but to find the sum = sum/2. This way the array will automatically be partitioned.
+        (3) Count of subset sum with a given sum  
+            - Same as subset sum problem except that we ruturn an int instead of boolean. 
+        (4) Minimum subset sum difference 
+        (5) Target sum 
+        (6) Number of subset sum sum gives diff.
+    2. Unbounded knapsack (5 problems)
+    3. Fibonacci (7 problems)
+    4. LCS (15 problems) 
+        (1) Largest common sub-string
+                - Same as LCS but reset the count to ZERO if the 2 pointers are not same
+        (2) Print LCS
+        (3) Shortest common super-sequence length
+                - Answer is len(s1)+len(s2)-LCS
+        (4) Print Shortest common super-sequence
+        (5) Min. number of insertions and deletions
+        (6) Largest repeating sub-sequence
+        (7) Length of largest sub-sequence of A where A is sub-string of B
+        (8) Subsequence pattern matching 
+        (9) Count how many times A appears as sub-sting in B
+        (10) Lartest palindromic sub-sequence
+        (11) Largest palindromic sub-string
+        (12) Count of palindromic sub-string 
+        (13) Min. number of deletions in a string to make a palindrome
+        (14) Min. numner of insertions in a string to make a palindrome
+    5. LIS (10 problems)
+    6. Kadane's algorithm (6 problems)                              
+    7. Matrix chain multiplication (7 problems)
+        - Explanation - https://www.youtube.com/watch?v=kMK148J9qEE&list=PL_z_8CaSLPWekqhdCPmFohncHwz8TY2Go&index=33
+        - 3 steps:
+            (1) Find i, j
+            (2) Find base condition 
+            (3) Find K loop scheme 
+        - Problems
+            - Matrix chain multiplication 
+            - Palindrome partitioning 
+            - Boolean paranthesization 
+
+    8. DP on trees (4 problems)
+    9. DP on grid (14 problems)
+    10. Others (5 problems)
+
+- Knapsack problem has 3 types
+    - Fractional knapsack (greedy approach)
+    - 0/1 knapsack (Dynamic programming)
+    - Unbounded knapsack
+
+- Some more Dynamic programming patterns (leetcode disccus post) - https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns
+
+Kadanes algorithm / Max/min subarray problems
+=============================================
+- DONE
+- [TODO] Add product and absolute sum (min/max) patterns to the PATTERNS file in Kadane's subfolder. 
+- Mostly has subarray sum problems (contigous). For non-contigous sub-arrays, use Knapsack dynamic programming solution.    
+
+SORTING
+======= 
+Bucket Sort - https://www.youtube.com/watch?v=YPTqKIgVk-k
+Quick sort - https://www.youtube.com/watch?v=7h1s2SojIRw
+Heap Sort - https://www.youtube.com/watch?v=HqPJF2L5h9U 
+Topological sort - https://www.youtube.com/watch?v=ddTC4Zovtbc
+Merge sort - 
+Insertion sort - 
+
+
+BITWISE OPERATIONS
+==================
+https://www.youtube.com/watch?v=xXKL9YBWgCY&list=PLl0KD3g-oDOHpWRyyGBUJ9jmul0lUOD80&index=1
+https://www.youtube.com/watch?v=jqJ5s077OKo&list=PLl0KD3g-oDOHpWRyyGBUJ9jmul0lUOD80&index=2
+
+check if int is even =>   if ((i & 1) ==){..}
+divide int by 2 => i >> 1
+multiply int by 2 ==> i << 1
+
+
+
+
+
+
+DISJOINT SETS - UNION FIND by RANK & PATH COMPRESSION
+=========================================================
+Explanation - https://www.youtube.com/watch?v=ayW5B2W9hfo
+        Union find - https://www.youtube.com/watch?v=ibjEGG7ylHk 
+        Path compression - https://www.youtube.com/watch?v=VHRhJWacxis
+Example problem - https://www.youtube.com/watch?v=8f1XPm4WOUc
+
+Path compression (explanation) - https://www.youtube.com/watch?v=VHRhJWacxis&t=0s
+
+Union Find and path compression code - https://www.youtube.com/watch?v=KbFlZYCpONw
+
+Hot to detect cycles in an undirected graph using Union-Find (algorithm) - https://www.youtube.com/watch?v=wU6udHRIkcc
+The above is similiar to using Unuin-Find to find minimum cost spanning tree in an undirected graph using 
+the Kruskal's algorithm: https://www.youtube.com/watch?v=JZBQLXgSGfs
+
+
+TREES
+=====
+- INORDER traversal of a BINARY SEARCH TREE tree leads to sorted values.
+- Playlist: https://www.youtube.com/watch?v=1XC3p2zBK34&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc
+- Trees can be rooted. They don't have cycles. DFS can also be used to root a tree.
+- The center of a tree can be found by finding middle node/s of the longest path of a tree (https://www.youtube.com/watch?v=nzF_9bjDzdc&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=10)
+- Teh center of a tree can also be found out by peeling away the leaf nodes (Like peeling the layers of an onion).
+- Number of nodes in a tree = N. Number of edges in a tree = (N-1)
+- Can be represented as adjacency list (efficient storage to retrieve neighbours) or adjacency matrix (mostly sparse hence wastes space).
+- a Binary tree has 2 child nodes. A Binary search tree (BST) follows BST property. (Left node < node < right node)
+- Rooted tree can be stored recursively. 
+- Binary can be stored as an array. 
+    - LEft child = 2N + 1
+    - Right child = 2N+2
+    = parent node = Math.Floor(N-1/2)
+- Rooting a tree can be done using DFS (Explanation: https://www.youtube.com/watch?v=2FFq2_je7Lg)
+- To find center of undirected tree (https://www.youtube.com/watch?v=nzF_9bjDzdc&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=4)
+    - The center is the middle node (or nodes) on the longest path across the tree.
+    - Set degrees of all nodes, then reduce degree of all nodes and update all other nodes. Continue until all nodes are done. The remaning nodes are the center nodes of the tree. 
+- Tree isomorphism and AHU algorithm for serializing a tree: 
+    - Explanation: https://www.youtube.com/watch?v=OCKvEMF0Xac&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=5
+    - What is Tree Isomorphism?
+        - The nodes and edges are structurally connected similarly 
+    - Code: https://www.youtube.com/watch?v=40Jx-at2P5k&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=6
+    - AHU algorithm can be implemented using post-order travelsal. See solution for Leetcode 297-HARD as an example implementation. (https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+
+    // Example AHU serialization (children nodes are not sorted yet)
+    public String serialize(TreeNode node) {        
+        if (node==null) return "";
+        
+        // Post-order traversal 
+        StringBuilder sb = new StringBuilder();
+        
+        if (node.left!=null) {
+            sb.append(serialize(node.left));
+        }
+        
+        if (node.right!=null) {
+            sb.append(serialize(node.right));
+        } 
+        
+        return "(" + node.val + sb.toString() + ")";
+    }
+
+
+- Lowest common ancestor: https://www.youtube.com/watch?v=sD1IoalFomA&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=7
+    - Can be used to: 
+        - Find the distance between 2 tree nodes
+    - "Eulorian tour and Range Minimum query (RMQ)" method to find Lowest Common Ancestor
+        - Eulerian tour is NOTHING BUT DEPTH FIRST SEARCH!! (remember to re-visit the current node after visiting the sub-tree)
+        - O(nlogn) creation time and O(n) time for LCA queries. creation time can be reduced to linar O(n) time
+        - Make sure that the tree is ROOTED!
+        - Ensure that all nodes are indexed uniquely. Assign a uniqute id to them between [0, n-1]
+        - Stores 2 arrays: depth[] and nodes[]
+            - Walk Eulrian path and updates depths and node_values in the 2 arrays.
+            - To find the LCA of 2 nodes, find the index of the nodes from nodes[] and for that index range, find the minimum value in the depth array. For the index found in the depth[], get the value from the nodes[], which is our LCA for the given 2 nodes. 
+        - Size of both above arrays is (2n-1)
+        - Code: https://www.youtube.com/watch?v=sD1IoalFomA&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=7
+                https://www.youtube.com/watch?v=rA7JJG7x9vs&list=PLDV1Zeh2NRsDfGc8rbQ0_58oEZQVtvoIc&index=8
+
+ 
+QUADTREE? https://leetcode.com/problemset/all/?search=quadtree&page=1
+=========
+
+GRAPHS
+======
+Hamiltonian cycle explanation - https://www.youtube.com/watch?v=dQr4wZCiJJ4
+Min. cost spanning tree (Prims and Kruskals algo) explanation - https://www.youtube.com/watch?v=4ZlRH0eK-qQ
+
+Notes:
+0. Hamiltonian cycle: Cycle that visits each vertex exactly once. 
+    - all cycles can be found using backtracking (DFS)
+    - Hamiltonian cycle is not possible in a graph if there is a pendant vertex or articulation point present in the graph, or for disconnected graphs
+
+1. A graph with V vertices and same number of edges as the vertices (V) edges always has a cycle
+2. A spanning tree has V-1 edges (and hence no cycle), where V=> number of vertices in the graph
+3. Formula for total number of spanning trees in a graph= (|E|Combination|V|) - No. of cycles
+4. Spanning tree does not exist in a non-connected graph
+5. A spanning tree is a subset of graph where no. of vertices = V (has all vertices) and no. of edges = V-1. Can be found using following 2 greedy mothods.
+6. Prims algorithm to find minimum cost spanning tree (greedy method):
+    - Select the minimum cost edge
+    - For rest of the procedure, select minumum cost edge such that it is connected to already selected vertices
+    - For non-connected graph, we cannot find spanning tree (union find and path compression)
+7. Kruskal's algorithm to find min. cost spanning tree (Greedy method)
+    - Always select a min. cost edge (doesn't need to be connected to selected vertices). Exclude edge if it forms a cycle. 
+    - Time complexity - O(E.V). By using min-heap this can be improved to O[(V-1) log(E) for finding min. edge] = O(VlogE).
+
+
+Shortest path from starting vertex to all other vertices:
+    - Dijkstra's algorithm explanation - https://www.youtube.com/watch?v=XB4MIexjvY0
+        - Is a greedy method. Is similar to Prims alogorithm below (except that it also RELAXES the connected edges).
+            - Select Vertex with shorest path. Then update (relaxes) the connected vertices with shortest path if possible. 
+        - Relaxation procedure for vertices (u,v)=> 
+            if(distance(u) + cost(u,v) < distance(v)) {
+                distance(v) = distance(u) + cost(u,v)
+            }
+        - Procedure/algorithm => 
+            - Set source node distance as 0. Set distance of connected nodes to source nodes to their respective edge values/cost. Set the distance of all other vertices not-connected to the source vertices to INFINITY.
+            - Select node with shortest path connected to the source node. Then relax all connecting nodes to this node. For the remaining vertices, repeat these 2 steps until all vertices have been visited this way. 
+        - Dijkstra's algorithm does not work for negative numbers 
+        - Time complexity = O(n^2). |V| vertices are visited and |V-1| vertices are relaxed each time. Hence, O(V^2) or O(n^2).
+
+    - Bellman ford algorithm explanation - https://www.youtube.com/watch?v=FtN3BYH2Zes 
+        - Relaxation formula is same as above for Dijkstra's algorithm:
+            Relaxation procedure for vertices (u,v)=> 
+                if(distance(u) + cost(u,v) < distance(v)) {
+                    distance(v) = distance(u) + cost(u,v)
+                }
+        - Similar to Dijkstras algorithm, except the following algorithm:
+            - Write down list of all the edges
+            - Then relax each edge, (V-1) times (where V=> number of vertices):
+                - Mark source vertex distance as 0 and all others as infinity. Then relax all edges in the above list with the above formula. 
+            - Repeat the above process V-1 times
+        - Bellman ford does not work when a cycle exists in a graph with a negative weight in it. it does work for cycles with postive weights. 
+        - Time complexity = O(n^3)
+
+
+DFS/BFS:
+    Explanation/code - https://www.youtube.com/watch?v=zaBhtODEL0w
+        - In general, BFS is preferred over DFS for search (element to be search might be right there next to the source element)
+        - For DFS:
+            - Use recursive method. Keep track of all visited nodes in a HashSet. 
+        - For BFS:
+            - Use iterative while loop method. Keep track of visited nodes in a HashSet. Also, maintain a LinkedList queue (FIFO). While loop runs until there are no elements in the queue. Within the while loop, check if element is found, if same node is visited twice, mark current node as visited and add all children nodes to the queue. 
+
+    DFS:
+    - Runtime = O(V+E)
+        - What can DFS do? https://www.youtube.com/watch?v=7fujbpJ0LB4&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=5
+            - Find strongly connected components/ coloring nodes of a graph (eg. find number of islands in a matrix)
+            - Compute a graph's minimum spanning tree. 
+            - detect and find cycles in a graph
+            - check if a graph is bipartite
+            - Topologically sort nodes of a graph
+            - Find bridges and articulation points?
+            - Find augmenting paths in a flow network?
+            - Generate mazes?
+        - DFS can also be used to root a tree (https://www.youtube.com/watch?v=2FFq2_je7Lg&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=9)
+
+
+    BFS:
+        - Runtime = O(V+E)
+        - Useful for finding shortest paths on an unweighted graph
+        - Maintain a PREV array to track the BFS path as shown in 6:13 and 6:37 of this video (https://www.youtube.com/watch?v=oDqjPvD54Ss&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=5)
+        - To store grid coordinates use two arrays storing (1,0), (-1,0), (0,1) and (0,-1)... and (1,-1), (-1,1) in case of diagonals
+        - To iterate and store the above grid value x,y pairs in the queue, an object can be used. A better approach is to use separate queus for each coordinate. (so 1 queue for x values and 1 queue for y values), then enque and deque elements simlutanesouly from each queue during BFS. 
+
+
+BACKTRACKING
+============
+Hamiltonian cycle explanation (see above notes) - https://www.youtube.com/watch?v=dQr4wZCiJJ4
+Backtracking general template - https://leetcode.com/problems/combination-sum/discuss/16502/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
+
+
+BINARY SEARCH
+=============
+- Only operates on sorted array. log(n) search time. 
+Basic binary search - https://www.youtube.com/watch?v=P3YID7liBug
+    - To avoid integer overflow: mid = left + [(right-left)/2]
+    - Left/right INTERVALS: (left, mid-1) and (mid+1, right)
+Search in a 2D matrix - 2 methods - https://www.youtube.com/watch?v=FOa55B9Ikfg
+rotated array search - https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solution/
+    (look at LC official solution. Compare the mid to nums[0] and then decide whether to search left or right)
+    OR method 2 - https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/discuss/158940/Beat-100%3A-Very-Simple-(Python)-Very-Detailed-Explanation
+
+Rotated array search WITH DUPLICATES (HARD) - https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/discuss/48908/Clean-python-solution
+
+HEAP
+====
+Explanation - https://www.youtube.com/watch?v=HqPJF2L5h9U
+Explanation (Aditya Verma) : https://www.youtube.com/playlist?list=PL_z_8CaSLPWdtY9W22VjnPxG30CXNZpI9
+- Heap is used when K is given and when largest or smallest items are to be found out 
+    - K largest items (Min heap)
+    - K smallest itesm (Max heap)
+- MErge sort time complexity is NlogN but for K items, heap sort is used to improve the time complecity to NlogK
+
+- Heap patterns https://leetcode.com/discuss/general-discussion/1127238/master-heap-by-solving-23-questions-in-4-patterns-category
+        Top K Pattern
+        LC #215 - Kth largest number in an array
+        LC #973 - K closest points to origin
+        LC #347 - Top k frequent elements/numbers
+        LC #692 - Top k frequent words
+        LC #264 - Ugly Number II
+        LC #451 - Frequency Sort
+        LC #703 - Kth largest number in a stream
+        LC #767 - Reorganize String
+        LC #358 - Rearrange string K distance apart
+        LC #1439 - Kth smallest sum of a matrix with sorted rows
+
+        Merge K sorted pattern
+        LC #23 - Merge K sorted
+        LC #373 - K pairs with the smallest sum
+        LC #378 - K smallest numbers in M-sorted lists
+
+        Two Heaps Pattern
+        LC #295 - Find median from a data stream
+        LC #480 - Sliding window Median
+        LC #502 - Maximize Capital/IPO
+
+        Minimum number Pattern
+        LC #1167 - Minimum Cost to connect sticks/ropes
+        LC #253 - Meeting Rooms II
+        LC #759 - Employee free time
+        LC #857 - Minimumcost to hire K workers
+        LC #621 - Minimum number of CPU (Task scheduler)
+        LC #871 - Minimum number of Refueling stops
+
+
+
+SLIDING WINDOW
+==============
+- 2 types: Fixed size and variable size window
+- window size = j-i+1
+- Number of windows = (Size of array - window size + 1)
+
+Examples: {Playlist - https://www.youtube.com/watch?v=uUXXEgK2Jh8&list=PL_z_8CaSLPWeM8BDJmIYDaoQ5zuwyxnfj&index=4}
+    FIXED
+        * First Negative Number in every Window of Size K 
+            - Maintain a FIFO queue of negative numbers as j++ happens. Remove from top of this queue is i++ happens and ir arr[i] == queue.peek(). 
+        * Count Occurrences Of Anagrams 
+            - brute force is n! solution (these many combinations for given string of length 'n')
+            - Sliding window. Maintain frequency count table for given string (constant space ascii chars). Slide window and maintain current window frequency count table. Check if 
+              it matches all the counts exactly for the reference table (constant time check for ascii char table). if match, then analgram found, if not then not found. Decrement curtable char count for cur char when i++. Increment curtable char count for cur char when j++. Time complexity of solution = O(n)
+    VARIABLE
+        * Largest Subarray of sum K
+        * Longest Substring With K Unique Characters
+        * Longest Substring With Without Repeating Characters
+        * Pick Toys (story problem, indirect inference of sliding window problem)
+        * Minimum Window Substring
+
+TRIE?
+====
+Explanation - https://www.youtube.com/watch?v=MyiHeqtwOWQ
+TODO- Solve this - https://leetcode.com/problems/implement-trie-prefix-tree/
+Applications/example uses - https://leetcode.com/problems/implement-trie-prefix-tree/solution/
+        - Tok K words problem - https://leetcode.com/problems/top-k-frequent-words/discuss/108399/Java-O(n)-solution-using-HashMap-BucketSort-and-Trie-22ms-Beat-81
+- Words stored in a trie are already alphabetically sorted (natural ordering). User PREORDER traversal to get these words. Example/explanation (Search autocomplete feature) https://www.youtube.com/watch?v=DfkLGiW8vNA 
+
+
+PREFIX SUM?
+==========
+https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
+
+
+SUFFIX ARRAYS? https://www.youtube.com/watch?v=zqKlL3ZpTqs&list=PLDV1Zeh2NRsCQ_Educ7GCNs3mvzpXhHW5
+==============
+- A suffix array is an array that stores "indices" of "sorted suffixes" of a given string. 
+- Suffix array provides space efficient alternative to a suffix tree which itself is a compressed version of a trie. 
+- Create an LCP (Longest common prefix) array from all substrings. 
+
+FENWICK TREE (Binary indexed tree)
+==================================
+- Fenwick tree is used to optimize the Prefiz sum algorithm when there are many updates. Can be used to find range queries as well. 
+- This is a 1 indexed array data structure
+to find first LSB 1 bit set use : N && (-N) --- bitwise masking.
+Explanation:
+    - https://www.topcoder.com/thrive/articles/Binary%20Indexed%20Trees
+    - https://www.hackerearth.com/practice/notes/binary-indexed-tree-or-fenwick-tree/
+    - Introduction: https://www.youtube.com/watch?v=RgITNht_f4Q
+      Point updates: https://www.youtube.com/watch?v=B-BkW9ZpKKM
+      Fenwick tree construction O(n) time: https://www.youtube.com/watch?v=BHPez138yX8
+      Implementation: https://www.youtube.com/watch?v=eHSQjEtVUGA&list=PLDV1Zeh2NRsCvoyP-bztk6uXAYoyZg_U9&index=4
+
+This can be used to optimize any question that uses the Prefix sum concept.
+
+SEGMENT TREE (for Range queries)?
+================================
+Explanation - https://www.youtube.com/watch?v=ZBHKZF5w4YU
+            - https://www.youtube.com/watch?v=Ic7OO3Uw6J0
+Implementation explanation (C++) - https://www.youtube.com/watch?v=2FShdqn-Oz8
+Lazy propagation for optimal updates - https://www.youtube.com/watch?v=xuoQdt5pHj0
+
+Helps with range queries. Query log(n)
+range sum, range queries, 
+there are 2n+1 total nodes in segment tree. Use 4n as total number of nodes in the tree always. 
+left child = 2*node+1
+right child = 2*node+2
+
+
+
+
+SPARSE TABLE?
+============
+- Sparse tables are great to compute - MIN, MAX and GCD but not SUM (since middle intersection will be double counted).
+- This can be used only if there are no updates (in which case we should use a Segment tree instead)
+
+explanation - 
+(to find range minimume query - RMQ)
+https://www.youtube.com/watch?v=0jWeUdxrGm4
+Example application - Find lowest common ancestor in a tree for 2 given nodes using Eulerian path and range minimum query. (https://www.youtube.com/watch?v=sD1IoalFomA&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=14)
+
+
+Problem list - https://leetcode.com/tag/segment-tree/
+
+INDEXED PRIORITY QUEUE?
+=======================
+
+
+STACKS
+======
+- Aditya Verma Playlist: https://www.youtube.com/watch?v=P1bAPZg5uaE&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd
+- I an double for look, if the inner loop is dependent on the outer loop, then stack can be used in such cases
+- Parent problems:
+    - Nearest greater to left 
+    - Nearest greater to right 
+    - Nearest smaller to left
+    - Nearest smaller to right 
+
+    - Stock span problem
+
+    - Maximum area of histogram
+    - Max. area of rectangle in a binary matrix
+
+    - Rain water trapping
+    - Implementing a min. stack (with extra space)
+    - IMPORTANT TRICK!! Implement min stack using O(1) space. @See https://www.youtube.com/watch?v=ZvaRHYYI0-4&list=PL_z_8CaSLPWdeOezg68SKkeLN4-T_jNHd&index=11
+
+
+    - Implement stack using Heap
+    - The celebrity problem 
+        ** IMPORTANT - https://www.youtube.com/watch?v=LtGnA5L6LIk
+    - Longest valid parenthesis
+        *** https://www.youtube.com/watch?v=r0-zx5ejdq0
+    - Iterative Tower of Hanoi 
+
+MONOTONIC STACK / NGE using array (DP)
+======================================
+[Next (or Previous) Greatest element (NGE), NSE, PGE, PSE]
+    - Using stacks (2 pass and then 1 pass)
+    - Using arrays (faster than stack)
+
+
+Optimized Next and previous smaller element using array (faster than a monotic stack)
+https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28902/5ms-O(n)-Java-solution-explained-(beats-96)
+
+Next smaller and previous smaller element using monotonic stack O(n) - double pass
+https://www.youtube.com/watch?v=X0X6G-eWgQ8
+
+Optimized smaller and prefvious smaller element using monotinic stack O(n) - single pass
+https://www.youtube.com/watch?v=jC_cWLy7jSI
+
+Monotonic stack next greater element (NGE)
+https://www.youtube.com/watch?v=Du881K7Jtk8
+
+Kadane's algorith (maximum subarray sum)
+https://www.youtube.com/watch?v=tmakGVOGV3A
+
+
+
+INTERVALS
+==========
+
+
+BUCKET SORT PATTERN (TOP K based on item FREQUENCY)
+==================== 
+These problems can also be solved using tree map or priority queue but bucketsort is space and time efficient.
+Intuition: https://www.youtube.com/watch?v=YPTqKIgVk-k
+3 possible approaches to solve this problem type - https://leetcode.com/problems/top-k-frequent-elements/discuss/81635/3-Java-Solution-using-Array-MaxHeap-TreeMap
+Exameple problems
+    - https://leetcode.com/problems/top-k-frequent-elements/
+    - https://leetcode.com/problems/sort-characters-by-frequency/
+    - https://leetcode.com/problems/top-k-frequent-words/
+

@@ -1,0 +1,46 @@
+Patterns for Kadane's algorithm:
+
+Pattern 1: Dynamic Programming - (Example: 53-EASY)
+		For each i,
+			arr[i]= Math,max(arr[i], arr[i-1]+arr[i]
+			max = Math.max(max, arr[i])
+
+		return max
+
+Pattern 2: Running sum and set sum = 0 if sum is negative (Example: 53-EASY)
+        int max = nums[0];
+        int sum =0;
+        
+        for (int num:nums) {
+            sum+=num;
+            max = Math.max(max, sum);
+            if (sum<0) sum=0; 
+        }
+
+Pattern 3: Find the start and end indices of max subarray sum:  (Example: 53-EASY)
+	    for (int i=1; i<nums.length;i++) {
+            
+            if (nums[i]+nums[i-1] > nums[i]) {
+                nums[i] = nums[i]+nums[i-1];
+                
+            } else {
+                startIdx = i;
+            }
+            
+            if (nums[i]>maxVal) {
+                maxVal = nums[i];
+                endIdx = i;
+            }
+        }
+
+Pattern 4: Patterns for single delete and other operations 
+		See solutions for - 1186-MEDIUM and 1746-MEDIUM
+
+Pattern 5: 
+    - Maximum sum rectangle in a 2D matrix
+    - Maximum sum rectangle in 2D matrix no larger than K
+
+    Intuition - https://www.youtube.com/watch?v=yCQN096CwWM
+    Use Kadane's algo, column by column, from left to right on the matrix. and keep a SUM column. use KAdanes algorithm on this SUM column and find bounds (start idx an end idx). Keep track of the max values as shown in video. 
+
+
