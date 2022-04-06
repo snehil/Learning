@@ -2,6 +2,10 @@ What is Consistent Hash Ring?
 ===========================
 https://www.youtube.com/watch?v=zaRkONvyGr8&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX&index=4
 
+What is rate limiting (How to avoid Cascading failures)?
+=====================
+https://www.youtube.com/watch?v=xrizarXJgC8&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX&index=26
+
 Memorize:
 =========
 
