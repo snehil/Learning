@@ -30,6 +30,10 @@ No. of secs in a day = 24*60*60
 Read grokking Jayan PDF.
 DDIA
 
+Grokking OOP design course PDF 
+https://akshay-iyangar.github.io/system-design/
+https://github.com/tssovi/grokking-the-object-oriented-design-interview
+
 
 I'm following up from my previous post and sharing some data points on my sys design approach. 
 https://www.teamblind.com/post/How-I-got-into-FAANG-FpwTWHuo
