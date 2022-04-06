@@ -140,6 +140,9 @@ revise API design and OOP design patterns
 		http://highscalability.com/blog/2016/9/28/how-uber-manages-a-million-writes-per-second-using-mesos-and.html
 
 
+Interesting talks: 
+Scaling Instagram 2017 - https://www.youtube.com/watch?v=hnpzNAPiC0E
+
 system design:
 high scalability system design blogs
 grokking system design pdf
