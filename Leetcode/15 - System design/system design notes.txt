@@ -1,3 +1,7 @@
+What is Consistent Hash Ring?
+===========================
+https://www.youtube.com/watch?v=zaRkONvyGr8&list=PLMCXHnjXnTnvo6alSjVkgxV-VH6EPyvoX&index=4
+
 Memorize:
 =========
 
