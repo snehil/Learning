@@ -142,3 +142,29 @@ nginx
 session management/sticky sessions
 load balancing
 data partitioning
+
+
+Research more design patterns:
+The talk is design patterns involved in moving the Monolith app to microservices based application
+Monolith to Microservices migration pattern
+- Decomposition pattern
+- Strangler pattern
+- Aggregator pattern
+- CQRS
+- DB strategy
+additional patterns
+- Service mesh - sidecar pattern
+- Saga pattern
+- Transaction outbox pattern
+
+Other common netflix patterns
+- Api gateway
+- Circuit breaker
+- Service discovery
+
+
+Ready made Implementations
+- tanzu /pcf
+- elasticbeanstack
+- oci service mesh
+- openshift
