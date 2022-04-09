@@ -183,3 +183,7 @@ Ready made Implementations
 - elasticbeanstack
 - oci service mesh
 - openshift
+
+Review Data Mesh concept.
+
+Static Factory Methods, Singleton Pattern, Factory Method Pattern, Template Pattern, Strategy Pattern, and many more.
