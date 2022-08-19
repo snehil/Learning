@@ -633,6 +633,10 @@ PREFIX SUM?
 ==========
 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
 
+QUERY ARRAY/PREFIX SUM
+======================
+Checkout this very important trick at the end of this video! https://www.youtube.com/watch?v=ERAHSoAk2Yo
+
 
 SUFFIX ARRAYS? https://www.youtube.com/watch?v=zqKlL3ZpTqs&list=PLDV1Zeh2NRsCQ_Educ7GCNs3mvzpXhHW5
 ==============
