@@ -192,3 +192,4 @@ Static Factory Methods, Singleton Pattern, Factory Method Pattern, Template Patt
 DDIA links
 ==========
 Serialization formats - https://betterprogramming.pub/use-binary-encoding-instead-of-json-dec745ec09b6
+sereialized data compression times - https://auth0.com/blog/beating-json-performance-with-protobuf/
